@@ -277,7 +277,7 @@ code {
 }
 
 .loader-stage {
-  min-height: 220px;
+  min-height: 248px;
   background: linear-gradient(180deg, var(--neutral-50), #fff);
   border: 1px dashed var(--neutral-200);
   border-radius: var(--radius);
@@ -397,7 +397,7 @@ code {
 
 .fc-loader__status--fact {
   max-width: 36ch;
-  min-height: 3.4em;
+  min-height: 6.2em;
   line-height: 1.45;
   transition: opacity 0.25s ease;
 }
