@@ -549,6 +549,13 @@ code {
   font-size: 0.85rem;
 }
 
+.svg-sprite {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
+
 .fc-loader {
   display: grid;
   justify-items: center;
@@ -569,6 +576,17 @@ code {
   color: var(--neutral-500);
   font-size: 0.92rem;
   min-height: 1.4em;
+}
+
+.fc-loader__status--fact {
+  max-width: 36ch;
+  min-height: 3.4em;
+  line-height: 1.45;
+  transition: opacity 0.25s ease;
+}
+
+.fc-loader__status--fact.is-swap {
+  opacity: 0;
 }
 
 .fc-ring {
@@ -611,17 +629,21 @@ code {
 
 .fc-ring__core {
   position: absolute;
-  inset: 24px;
+  inset: 22px;
   border-radius: 50%;
   background: linear-gradient(145deg, var(--primary), var(--primary-dark));
   color: #fff;
   display: grid;
   place-items: center;
-  font-family: var(--font-display);
-  font-weight: 700;
-  letter-spacing: -0.4px;
   box-shadow: 0 8px 18px rgba(26, 86, 219, 0.28);
   animation: core-pulse 1.8s ease-in-out infinite;
+}
+
+.fc-ring__print {
+  width: 22px;
+  height: 26px;
+  display: block;
+  color: #fff;
 }
 
 .fc-docs__stack {
@@ -781,7 +803,7 @@ code {
 }
 
 .fc-overlay__panel {
-  width: min(420px, 100%);
+  width: min(460px, 100%);
 }
 
 .fc-loader--overlay .fc-loader__title,
