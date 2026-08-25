@@ -266,19 +266,6 @@ code {
   padding: 20px 12px 8px;
 }
 
-.loader-stage--dark {
-  background: #14171c;
-  border-color: #2a2e33;
-}
-
-.loader-stage--dark .fc-loader__title {
-  color: #fff;
-}
-
-.loader-stage--dark .fc-loader__status {
-  color: #9ca3af;
-}
-
 .loader-card-title {
   font-family: var(--font-display);
   font-size: 1.25rem;
