@@ -549,13 +549,6 @@ code {
   font-size: 0.85rem;
 }
 
-.svg-sprite {
-  position: absolute;
-  width: 0;
-  height: 0;
-  overflow: hidden;
-}
-
 .fc-loader {
   display: grid;
   justify-items: center;
@@ -629,7 +622,7 @@ code {
 
 .fc-ring__core {
   position: absolute;
-  inset: 22px;
+  inset: 20px;
   border-radius: 50%;
   background: linear-gradient(145deg, var(--primary), var(--primary-dark));
   color: #fff;
@@ -640,10 +633,9 @@ code {
 }
 
 .fc-ring__print {
-  width: 22px;
+  width: 26px;
   height: 26px;
   display: block;
-  color: #fff;
 }
 
 .fc-docs__stack {
