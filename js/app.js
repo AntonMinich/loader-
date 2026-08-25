@@ -9,10 +9,6 @@ const RING_FACTS = [
 
 const overlay = document.getElementById("overlay");
 const overlayPanel = overlay.querySelector("[data-overlay-panel]");
-const cabinetPortal = document.getElementById("cabinet-portal");
-const loginForm = document.querySelector("[data-login-form]");
-const registerForm = document.querySelector("[data-register-form]");
-const DEMO_WAIT_MS = 3200;
 
 function cycleText(node, values, interval) {
   if (!node) return () => {};
@@ -33,40 +29,20 @@ const liveCleanups = [
 ];
 
 let overlayCleanup = () => {};
-let waitToken = 0;
-
-function finishWaitButtons() {
-  document.querySelectorAll(".btn-submit.is-loading").forEach((button) => {
-    button.classList.remove("is-loading");
-    button.disabled = false;
-  });
-}
 
 function closeOverlay() {
   overlay.hidden = true;
-  overlay.dataset.mode = "preview";
-  document.body.append(overlay);
   overlayCleanup();
   overlayCleanup = () => {};
   overlayPanel.innerHTML = "";
-  finishWaitButtons();
 }
 
-function openOverlay(variant, { wait = false } = {}) {
+function openOverlay(variant) {
   const template = document.getElementById(`tpl-${variant}`);
   if (!template) return;
   overlayCleanup();
   overlayPanel.innerHTML = "";
   overlayPanel.append(template.content.cloneNode(true));
-  overlay.dataset.mode = wait ? "wait" : "preview";
-
-  if (wait) {
-    overlayPanel.querySelector("[data-close-overlay]")?.remove();
-    cabinetPortal?.append(overlay);
-  } else {
-    document.body.append(overlay);
-  }
-
   overlay.hidden = false;
 
   const ringStatus = overlayPanel.querySelector("[data-ring-status]");
@@ -81,7 +57,6 @@ document.querySelectorAll("[data-open-overlay]").forEach((button) => {
 });
 
 overlay.addEventListener("click", (event) => {
-  if (overlay.dataset.mode === "wait") return;
   if (event.target === overlay || event.target.closest("[data-close-overlay]")) {
     closeOverlay();
   }
@@ -90,40 +65,6 @@ overlay.addEventListener("click", (event) => {
 document.addEventListener("keydown", (event) => {
   if (event.key === "Escape" && !overlay.hidden) closeOverlay();
 });
-
-function showPortal(name) {
-  document.querySelectorAll("[data-portal]").forEach((screen) => {
-    screen.hidden = screen.dataset.portal !== name;
-  });
-  document.querySelectorAll(".portal-switch__btn").forEach((tab) => {
-    const active = tab.dataset.portalTab === name;
-    tab.classList.toggle("is-active", active);
-    tab.setAttribute("aria-selected", String(active));
-  });
-}
-
-document.querySelectorAll("[data-portal-tab]").forEach((button) => {
-  button.addEventListener("click", () => showPortal(button.dataset.portalTab));
-});
-
-function bindWaitForm(form, variant) {
-  form?.addEventListener("submit", (event) => {
-    event.preventDefault();
-    const button = form.querySelector(".btn-submit");
-    const token = ++waitToken;
-    button.classList.add("is-loading");
-    button.disabled = true;
-    openOverlay(variant, { wait: true });
-    window.setTimeout(() => {
-      button.classList.remove("is-loading");
-      button.disabled = false;
-      if (token === waitToken) closeOverlay();
-    }, DEMO_WAIT_MS);
-  });
-}
-
-bindWaitForm(loginForm, "print");
-bindWaitForm(registerForm, "docs");
 
 window.addEventListener("beforeunload", () => {
   liveCleanups.forEach((stop) => stop());
