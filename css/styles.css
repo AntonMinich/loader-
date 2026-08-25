@@ -185,10 +185,6 @@ code {
   padding: 64px 0;
 }
 
-.section--muted {
-  background: var(--neutral-50);
-}
-
 .section-header {
   margin-bottom: 32px;
 }
