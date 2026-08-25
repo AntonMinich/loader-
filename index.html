@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FINCODE · Индикаторы загрузки</title>
+  <meta name="description" content="Три варианта loader для ожидания документов и ответа бэкенда в стиле FINCODE.">
+  <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-topbar">
+      <div class="container topbar-inner">
+        <span class="topbar-item">Партнёрский кабинет · индикаторы ожидания</span>
+        <span class="topbar-item">стили FINCODE leasing</span>
+      </div>
+    </div>
+    <nav class="main-nav">
+      <div class="container nav-inner">
+        <a class="brand" href="./">
+          <span class="brand-text">FIN<span class="brand-accent">CODE</span></span>
+        </a>
+        <div class="nav-meta">
+          <span class="nav-pill">web-partners</span>
+          <span class="nav-phone">+375 44 500 11 55</span>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero-section">
+      <div class="hero-grid" aria-hidden="true"></div>
+      <div class="container hero-inner">
+        <span class="hero-badge">Три сценария ожидания</span>
+        <h1 class="hero-title">Loader для документов и ответа бэкенда</h1>
+        <p class="hero-subtitle">
+          Компоненты в фирменных цветах FINCODE: синий <code>#1a56db</code>,
+          бирюза <code>#0f766e</code>, янтарь <code>#f59e0b</code>. Подходят для
+          загрузки договоров, проверки файлов и ожидания API.
+        </p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-label">Варианты</span>
+          <h2 class="section-title">Выберите индикатор под задачу</h2>
+          <p class="section-text">Каждый loader можно показать в карточке или на весь экран — как в кабинете партнёра.</p>
+        </div>
+
+        <div class="loader-grid">
+          <article class="loader-card" data-variant="ring">
+            <div class="loader-card-badge">01 · API</div>
+            <div class="loader-stage" aria-busy="true" aria-live="polite">
+              <div class="fc-loader fc-loader--ring" data-live-ring>
+                <div class="fc-ring" role="status" aria-label="Ожидание ответа сервера">
+                  <svg class="fc-ring__svg" viewBox="0 0 96 96">
+                    <circle class="fc-ring__track" cx="48" cy="48" r="38"></circle>
+                    <circle class="fc-ring__arc fc-ring__arc--primary" cx="48" cy="48" r="38"></circle>
+                    <circle class="fc-ring__arc fc-ring__arc--secondary" cx="48" cy="48" r="28"></circle>
+                  </svg>
+                  <div class="fc-ring__core">FC</div>
+                </div>
+                <p class="fc-loader__title">Связь с сервером</p>
+                <p class="fc-loader__status" data-ring-status>Отправляем запрос…</p>
+              </div>
+            </div>
+            <h3 class="loader-card-title">Кольцо FINCODE</h3>
+            <p class="loader-card-desc">Для короткого ожидания ответа бэкенда: расчёт, одобрение, сохранение заявки.</p>
+            <ul class="loader-card-meta">
+              <li>Оверлей или центр экрана</li>
+              <li>Циклический статус запроса</li>
+            </ul>
+            <button class="btn btn-primary" type="button" data-open-overlay="ring">Показать на весь экран</button>
+          </article>
+
+          <article class="loader-card" data-variant="docs">
+            <div class="loader-card-badge">02 · Документы</div>
+            <div class="loader-stage" aria-busy="true" aria-live="polite">
+              <div class="fc-loader fc-loader--docs">
+                <div class="fc-docs" role="status" aria-label="Загрузка документов">
+                  <div class="fc-docs__stack">
+                    <div class="fc-docs__sheet fc-docs__sheet--back"></div>
+                    <div class="fc-docs__sheet fc-docs__sheet--mid"></div>
+                    <div class="fc-docs__sheet fc-docs__sheet--front">
+                      <span class="fc-docs__line"></span>
+                      <span class="fc-docs__line fc-docs__line--short"></span>
+                      <span class="fc-docs__line"></span>
+                      <span class="fc-docs__stamp">PDF</span>
+                    </div>
+                    <div class="fc-docs__scan"></div>
+                  </div>
+                </div>
+                <p class="fc-loader__title">Проверяем документы</p>
+                <p class="fc-loader__status">Сканируем пакет файлов…</p>
+              </div>
+            </div>
+            <h3 class="loader-card-title">Сканер документов</h3>
+            <p class="loader-card-desc">Когда пользователь ждёт загрузку, распознавание или формирование пакета договоров.</p>
+            <ul class="loader-card-meta">
+              <li>Визуально про файлы</li>
+              <li>Скан-линия в цвете secondary</li>
+            </ul>
+            <button class="btn btn-primary" type="button" data-open-overlay="docs">Показать на весь экран</button>
+          </article>
+
+          <article class="loader-card" data-variant="steps">
+            <div class="loader-card-badge">03 · Процесс</div>
+            <div class="loader-stage loader-stage--wide" aria-busy="true" aria-live="polite">
+              <div class="fc-loader fc-loader--steps" data-live-steps>
+                <ol class="fc-steps" role="status" aria-label="Этапы обработки">
+                  <li class="fc-steps__item is-done">
+                    <span class="fc-steps__dot"></span>
+                    <span class="fc-steps__label">Отправка</span>
+                  </li>
+                  <li class="fc-steps__item is-active">
+                    <span class="fc-steps__dot"></span>
+                    <span class="fc-steps__label">Проверка</span>
+                  </li>
+                  <li class="fc-steps__item">
+                    <span class="fc-steps__dot"></span>
+                    <span class="fc-steps__label">Ответ</span>
+                  </li>
+                </ol>
+                <div class="fc-progress" aria-hidden="true">
+                  <div class="fc-progress__bar"></div>
+                </div>
+                <p class="fc-loader__title">Обратная связь с бэкендом</p>
+                <p class="fc-loader__status" data-steps-status>Проверяем комплект документов…</p>
+              </div>
+            </div>
+            <h3 class="loader-card-title">Этапы сделки</h3>
+            <p class="loader-card-desc">Для длинных операций: скоринг, подпись, генерация PDF. Пользователь видит, на каком шаге система.</p>
+            <ul class="loader-card-meta">
+              <li>Индикатор прогресса</li>
+              <li>Смена статусов по шагам</li>
+            </ul>
+            <button class="btn btn-primary" type="button" data-open-overlay="steps">Показать на весь экран</button>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--muted">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-label">В контексте кабинета</span>
+          <h2 class="section-title">Как это выглядит у партнёра</h2>
+          <p class="section-text">Имитация экрана документов: список, кнопка запроса и состояния ожидания.</p>
+        </div>
+
+        <div class="cabinet">
+          <aside class="cabinet-side">
+            <p class="cabinet-side-label">Кабинет</p>
+            <nav class="cabinet-nav">
+              <a class="is-active" href="#docs-panel">Документы</a>
+              <a href="#docs-panel">Заявки</a>
+              <a href="#docs-panel">Клиенты</a>
+            </nav>
+          </aside>
+
+          <div class="cabinet-main" id="docs-panel">
+            <div class="cabinet-toolbar">
+              <div>
+                <h3>Пакет документов сделки</h3>
+                <p>Договор лизинга, паспорт и расчёт платежей</p>
+              </div>
+              <div class="cabinet-actions">
+                <button class="btn btn-outline" type="button" data-demo="skeleton">Обновить список</button>
+                <button class="btn btn-primary" type="button" data-demo="docs-overlay">Запросить с сервера</button>
+              </div>
+            </div>
+
+            <div class="docs-table" data-docs-table>
+              <div class="docs-row docs-row--head">
+                <span>Файл</span>
+                <span>Тип</span>
+                <span>Статус</span>
+              </div>
+              <div class="docs-row">
+                <span class="docs-name">Договор лизинга</span>
+                <span>PDF</span>
+                <span class="status-chip status-chip--ok">Готов</span>
+              </div>
+              <div class="docs-row">
+                <span class="docs-name">Паспорт лизингополучателя</span>
+                <span>JPG</span>
+                <span class="status-chip status-chip--ok">Готов</span>
+              </div>
+              <div class="docs-row">
+                <span class="docs-name">График платежей</span>
+                <span>PDF</span>
+                <span class="status-chip status-chip--wait">Ожидает</span>
+              </div>
+            </div>
+
+            <form class="lead-form" data-lead-form>
+              <label>
+                Комментарий для бэкенда
+                <input type="text" name="note" placeholder="Например: сформировать пакет повторно" required>
+              </label>
+              <button class="btn btn-primary btn-submit" type="submit">
+                <span class="btn-submit__label">Отправить запрос</span>
+                <span class="btn-submit__spinner" aria-hidden="true"></span>
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <span class="brand-text">FIN<span class="brand-accent">CODE</span></span>
+      <p>ООО «Финансовый код» · лизинг для физических лиц и магазинов-партнёров</p>
+    </div>
+  </footer>
+
+  <div class="fc-overlay" id="overlay" hidden>
+    <div class="fc-overlay__panel" data-overlay-panel></div>
+  </div>
+
+  <template id="tpl-ring">
+    <div class="fc-loader fc-loader--ring fc-loader--overlay">
+      <div class="fc-ring" role="status" aria-label="Ожидание ответа сервера">
+        <svg class="fc-ring__svg" viewBox="0 0 96 96">
+          <circle class="fc-ring__track" cx="48" cy="48" r="38"></circle>
+          <circle class="fc-ring__arc fc-ring__arc--primary" cx="48" cy="48" r="38"></circle>
+          <circle class="fc-ring__arc fc-ring__arc--secondary" cx="48" cy="48" r="28"></circle>
+        </svg>
+        <div class="fc-ring__core">FC</div>
+      </div>
+      <p class="fc-loader__title">Связь с сервером</p>
+      <p class="fc-loader__status" data-ring-status>Отправляем запрос…</p>
+      <button class="btn btn-ghost" type="button" data-close-overlay>Закрыть превью</button>
+    </div>
+  </template>
+
+  <template id="tpl-docs">
+    <div class="fc-loader fc-loader--docs fc-loader--overlay">
+      <div class="fc-docs" role="status" aria-label="Загрузка документов">
+        <div class="fc-docs__stack">
+          <div class="fc-docs__sheet fc-docs__sheet--back"></div>
+          <div class="fc-docs__sheet fc-docs__sheet--mid"></div>
+          <div class="fc-docs__sheet fc-docs__sheet--front">
+            <span class="fc-docs__line"></span>
+            <span class="fc-docs__line fc-docs__line--short"></span>
+            <span class="fc-docs__line"></span>
+            <span class="fc-docs__stamp">PDF</span>
+          </div>
+          <div class="fc-docs__scan"></div>
+        </div>
+      </div>
+      <p class="fc-loader__title">Формируем пакет документов</p>
+      <p class="fc-loader__status">Загружаем договор и приложения…</p>
+      <button class="btn btn-ghost" type="button" data-close-overlay>Закрыть превью</button>
+    </div>
+  </template>
+
+  <template id="tpl-steps">
+    <div class="fc-loader fc-loader--steps fc-loader--overlay" data-live-steps>
+      <ol class="fc-steps" role="status" aria-label="Этапы обработки">
+        <li class="fc-steps__item is-done">
+          <span class="fc-steps__dot"></span>
+          <span class="fc-steps__label">Отправка</span>
+        </li>
+        <li class="fc-steps__item is-active">
+          <span class="fc-steps__dot"></span>
+          <span class="fc-steps__label">Проверка</span>
+        </li>
+        <li class="fc-steps__item">
+          <span class="fc-steps__dot"></span>
+          <span class="fc-steps__label">Ответ</span>
+        </li>
+      </ol>
+      <div class="fc-progress" aria-hidden="true">
+        <div class="fc-progress__bar"></div>
+      </div>
+      <p class="fc-loader__title">Обратная связь с бэкендом</p>
+      <p class="fc-loader__status" data-steps-status>Проверяем комплект документов…</p>
+      <button class="btn btn-ghost" type="button" data-close-overlay>Закрыть превью</button>
+    </div>
+  </template>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
