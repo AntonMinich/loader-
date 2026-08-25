@@ -613,8 +613,8 @@ code {
   );
   background-size: 100% 220%;
   animation: print-scan 2.2s ease-in-out infinite;
-  -webkit-mask-image: url("../img/fingerprint.svg?v=14");
-  mask-image: url("../img/fingerprint.svg?v=14");
+  -webkit-mask-image: url("../img/fingerprint.svg?v=15");
+  mask-image: url("../img/fingerprint.svg?v=15");
   -webkit-mask-size: 88px 88px;
   mask-size: 88px 88px;
   -webkit-mask-repeat: no-repeat;
