@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>FINCODE · Индикаторы загрузки</title>
-  <meta name="description" content="Три варианта loader для ожидания документов и ответа бэкенда в стиле FINCODE.">
+  <meta name="description" content="Варианты loader FINCODE: отпечаток для B2C, B2B и админки, сканер документов и волна графика.">
   <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -36,7 +36,7 @@
     <section class="hero-section">
       <div class="hero-grid" aria-hidden="true"></div>
       <div class="container hero-inner">
-        <span class="hero-badge">Три сценария ожидания</span>
+        <span class="hero-badge">Сценарии ожидания</span>
         <h1 class="hero-title">Loader для документов и ответа бэкенда</h1>
         <p class="hero-subtitle">
           Компоненты в фирменных цветах FINCODE: синий <code>#1a56db</code>,
@@ -51,31 +51,82 @@
         <div class="section-header">
           <span class="section-label">Варианты</span>
           <h2 class="section-title">Выберите индикатор под задачу</h2>
-          <p class="section-text">Каждый loader можно показать в карточке или на весь экран — как в кабинете партнёра.</p>
+          <p class="section-text">Отпечаток — один знак, разные тексты: B2C, B2B и админка. Дальше — отдельные сценарии для документов и графика.</p>
         </div>
 
-        <div class="loader-grid">
-          <article class="loader-card" data-variant="print">
-            <div class="loader-card-badge">01 · Универсальный</div>
-            <div class="loader-stage" aria-busy="true" aria-live="polite">
-              <div class="fc-loader fc-loader--print" data-live-ring>
-                <div class="fc-print" role="status" aria-label="Ожидание">
-                  <img class="fc-print__mark" src="img/fingerprint.svg?v=16" alt="">
-                  <span class="fc-print__scan" aria-hidden="true"></span>
-                </div>
-                <p class="fc-loader__title">Секунда пользы</p>
-                <p class="fc-loader__status fc-loader__status--fact" data-ring-status>Лизинг не замораживает всю сумму: покупка уже у вас, деньги остаются в обороте.</p>
-              </div>
-            </div>
-            <h3 class="loader-card-title">Отпечаток FINCODE</h3>
-            <p class="loader-card-desc">Универсальный индикатор для любого ожидания. Вместо статусов сервера — короткий факт, почему лизинг выгоднее оплаты наличными.</p>
-            <ul class="loader-card-meta">
-              <li>Градиентный отпечаток из логотипа</li>
-              <li>Подходит для заявок, расчётов и кабинета</li>
-            </ul>
-            <button class="btn btn-primary" type="button" data-open-overlay="print">Показать на весь экран</button>
-          </article>
+        <div class="loader-group">
+          <h3 class="loader-group__title">Вариант 1 · Отпечаток</h3>
+          <p class="loader-group__text">Один индикатор для трёх кабинетов. Меняется только текст под знаком.</p>
 
+          <div class="loader-grid">
+            <article class="loader-card" data-variant="print">
+              <div class="loader-card-badge">1 · B2C</div>
+              <div class="loader-stage" aria-busy="true" aria-live="polite">
+                <div class="fc-loader fc-loader--print" data-live-ring>
+                  <div class="fc-print" role="status" aria-label="Ожидание">
+                    <img class="fc-print__mark" src="img/fingerprint.svg?v=16" alt="">
+                    <span class="fc-print__scan" aria-hidden="true"></span>
+                  </div>
+                  <p class="fc-loader__title">Секунда пользы</p>
+                  <p class="fc-loader__status fc-loader__status--fact" data-ring-status>Лизинг не замораживает всю сумму: покупка уже у вас, деньги остаются в обороте.</p>
+                </div>
+              </div>
+              <h3 class="loader-card-title">Кабинет B2C</h3>
+              <p class="loader-card-desc">Текущий универсальный индикатор: вместо статусов сервера — короткий факт, почему лизинг выгоднее оплаты наличными.</p>
+              <ul class="loader-card-meta">
+                <li>Градиентный отпечаток из логотипа</li>
+                <li>Ротация фактов о лизинге</li>
+              </ul>
+              <button class="btn btn-primary" type="button" data-open-overlay="print">Показать на весь экран</button>
+            </article>
+
+            <article class="loader-card" data-variant="print-b2b">
+              <div class="loader-card-badge">1.2 · B2B</div>
+              <div class="loader-stage" aria-busy="true" aria-live="polite">
+                <div class="fc-loader fc-loader--print">
+                  <div class="fc-print" role="status" aria-label="Ожидание">
+                    <img class="fc-print__mark" src="img/fingerprint.svg?v=16" alt="">
+                    <span class="fc-print__scan" aria-hidden="true"></span>
+                  </div>
+                  <p class="fc-loader__wait">Мы тоже не любим ждать.<br>Уже почти.</p>
+                </div>
+              </div>
+              <h3 class="loader-card-title">Кабинет B2B</h3>
+              <p class="loader-card-desc">Тот же отпечаток, без фактов из варианта 1. Одна фраза ожидания для партнёрского кабинета.</p>
+              <ul class="loader-card-meta">
+                <li>Без ротации текстов</li>
+                <li>Только «Мы тоже не любим ждать. Уже почти.»</li>
+              </ul>
+              <button class="btn btn-primary" type="button" data-open-overlay="print-b2b">Показать на весь экран</button>
+            </article>
+
+            <article class="loader-card" data-variant="print-admin">
+              <div class="loader-card-badge">1.3 · Админка</div>
+              <div class="loader-stage" aria-busy="true" aria-live="polite">
+                <div class="fc-loader fc-loader--print">
+                  <div class="fc-print" role="status" aria-label="Ожидание">
+                    <img class="fc-print__mark" src="img/fingerprint.svg?v=16" alt="">
+                    <span class="fc-print__scan" aria-hidden="true"></span>
+                  </div>
+                  <p class="fc-loader__wait">Мы тоже не любим ждать.<br>Уже почти.</p>
+                </div>
+              </div>
+              <h3 class="loader-card-title">Админка</h3>
+              <p class="loader-card-desc">Как вариант 1.2, для административной панели: тот же знак и та же фраза ожидания.</p>
+              <ul class="loader-card-meta">
+                <li>Тот же отпечаток, что у B2B</li>
+                <li>Только «Мы тоже не любим ждать. Уже почти.»</li>
+              </ul>
+              <button class="btn btn-primary" type="button" data-open-overlay="print-admin">Показать на весь экран</button>
+            </article>
+          </div>
+        </div>
+
+        <div class="loader-group">
+          <h3 class="loader-group__title">Другие индикаторы</h3>
+          <p class="loader-group__text">Сценарии для пакета документов и графика платежей.</p>
+
+          <div class="loader-grid loader-grid--pair">
           <article class="loader-card" data-variant="docs">
             <div class="loader-card-badge">02 · Документы</div>
             <div class="loader-stage" aria-busy="true" aria-live="polite">
@@ -125,6 +176,7 @@
             </ul>
             <button class="btn btn-primary" type="button" data-open-overlay="wave">Показать на весь экран</button>
           </article>
+          </div>
         </div>
       </div>
     </section>
@@ -149,6 +201,28 @@
       </div>
       <p class="fc-loader__title">Секунда пользы</p>
       <p class="fc-loader__status fc-loader__status--fact" data-ring-status>Лизинг не замораживает всю сумму: покупка уже у вас, деньги остаются в обороте.</p>
+      <button class="btn btn-ghost" type="button" data-close-overlay>Закрыть превью</button>
+    </div>
+  </template>
+
+  <template id="tpl-print-b2b">
+    <div class="fc-loader fc-loader--print fc-loader--overlay">
+      <div class="fc-print" role="status" aria-label="Ожидание">
+        <img class="fc-print__mark" src="img/fingerprint.svg?v=16" alt="">
+        <span class="fc-print__scan" aria-hidden="true"></span>
+      </div>
+      <p class="fc-loader__wait">Мы тоже не любим ждать.<br>Уже почти.</p>
+      <button class="btn btn-ghost" type="button" data-close-overlay>Закрыть превью</button>
+    </div>
+  </template>
+
+  <template id="tpl-print-admin">
+    <div class="fc-loader fc-loader--print fc-loader--overlay">
+      <div class="fc-print" role="status" aria-label="Ожидание">
+        <img class="fc-print__mark" src="img/fingerprint.svg?v=16" alt="">
+        <span class="fc-print__scan" aria-hidden="true"></span>
+      </div>
+      <p class="fc-loader__wait">Мы тоже не любим ждать.<br>Уже почти.</p>
       <button class="btn btn-ghost" type="button" data-close-overlay>Закрыть превью</button>
     </div>
   </template>
