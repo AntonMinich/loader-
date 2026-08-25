@@ -2,14 +2,9 @@ const RING_FACTS = [
   "Лизинг не замораживает всю сумму: покупка уже у вас, деньги остаются в обороте.",
   "Наличными вы платите 100% сразу. В лизинге — аванс, остальное удобными платежами.",
   "Пока копите наличными, цена может вырасти. Лизинг фиксирует условия сегодня.",
-  "Досрочно закрыть договор можно с первого дня — без многолетнего ожидания.",
+  "Лизинг — это способ распределить расходы во времени без необходимости копить всю сумму сразу.",
+  "Финансовые цели достигаются быстрее, когда есть чёткий план платежей.",
   "Фиксированный платёж проще планировать, чем откладывать нужную покупку.",
-];
-
-const STEP_FLOW = [
-  { active: 0, text: "Отправляем пакет на сервер…" },
-  { active: 1, text: "Проверяем комплект документов…" },
-  { active: 2, text: "Получаем ответ бэкенда…" },
 ];
 
 const overlay = document.getElementById("overlay");
@@ -31,30 +26,8 @@ function cycleText(node, values, interval) {
   return () => window.clearInterval(timer);
 }
 
-function renderSteps(root, activeIndex) {
-  const items = root.querySelectorAll(".fc-steps__item");
-  items.forEach((item, index) => {
-    item.classList.toggle("is-done", index < activeIndex);
-    item.classList.toggle("is-active", index === activeIndex);
-  });
-}
-
-function startStepLoop(root) {
-  if (!root) return () => {};
-  const status = root.querySelector("[data-steps-status]");
-  let index = 1;
-  renderSteps(root, index);
-  const timer = window.setInterval(() => {
-    index = (index + 1) % STEP_FLOW.length;
-    renderSteps(root, STEP_FLOW[index].active);
-    if (status) status.textContent = STEP_FLOW[index].text;
-  }, 1800);
-  return () => window.clearInterval(timer);
-}
-
 const liveCleanups = [
   cycleText(document.querySelector("[data-live-ring] [data-ring-status]"), RING_FACTS, 4500),
-  startStepLoop(document.querySelector("[data-live-steps]")),
 ];
 
 let overlayCleanup = () => {};
@@ -75,12 +48,9 @@ function openOverlay(variant) {
   overlay.hidden = false;
 
   const ringStatus = overlayPanel.querySelector("[data-ring-status]");
-  const stepsRoot = overlayPanel.querySelector("[data-live-steps]");
   const stopRing = cycleText(ringStatus, RING_FACTS, 4500);
-  const stopSteps = startStepLoop(stepsRoot);
   overlayCleanup = () => {
     stopRing();
-    stopSteps();
   };
 }
 
@@ -117,7 +87,7 @@ leadForm?.addEventListener("submit", (event) => {
   const button = leadForm.querySelector(".btn-submit");
   button.classList.add("is-loading");
   button.disabled = true;
-  openOverlay("ring");
+  openOverlay("print");
   window.setTimeout(() => {
     button.classList.remove("is-loading");
     button.disabled = false;

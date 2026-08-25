@@ -55,31 +55,25 @@
         </div>
 
         <div class="loader-grid">
-          <article class="loader-card" data-variant="ring">
+          <article class="loader-card" data-variant="print">
             <div class="loader-card-badge">01 · Универсальный</div>
-            <div class="loader-stage" aria-busy="true" aria-live="polite">
-              <div class="fc-loader fc-loader--ring" data-live-ring>
-                <div class="fc-ring" role="status" aria-label="Ожидание">
-                  <svg class="fc-ring__svg" viewBox="0 0 96 96">
-                    <circle class="fc-ring__track" cx="48" cy="48" r="38"></circle>
-                    <circle class="fc-ring__arc fc-ring__arc--primary" cx="48" cy="48" r="38"></circle>
-                    <circle class="fc-ring__arc fc-ring__arc--secondary" cx="48" cy="48" r="28"></circle>
-                  </svg>
-                  <div class="fc-ring__core">
-                    <img class="fc-ring__print" src="img/fingerprint.svg" alt="" width="26" height="26">
-                  </div>
+            <div class="loader-stage loader-stage--dark" aria-busy="true" aria-live="polite">
+              <div class="fc-loader fc-loader--print" data-live-ring>
+                <div class="fc-print" role="status" aria-label="Ожидание">
+                  <img class="fc-print__mark" src="img/fingerprint.svg" alt="">
+                  <span class="fc-print__scan" aria-hidden="true"></span>
                 </div>
                 <p class="fc-loader__title">Секунда пользы</p>
                 <p class="fc-loader__status fc-loader__status--fact" data-ring-status>Лизинг не замораживает всю сумму: покупка уже у вас, деньги остаются в обороте.</p>
               </div>
             </div>
-            <h3 class="loader-card-title">Кольцо FINCODE</h3>
+            <h3 class="loader-card-title">Отпечаток FINCODE</h3>
             <p class="loader-card-desc">Универсальный индикатор для любого ожидания. Вместо статусов сервера — короткий факт, почему лизинг выгоднее оплаты наличными.</p>
             <ul class="loader-card-meta">
-              <li>Отпечаток из логотипа FINCODE</li>
+              <li>Градиентный отпечаток из логотипа</li>
               <li>Подходит для заявок, расчётов и кабинета</li>
             </ul>
-            <button class="btn btn-primary" type="button" data-open-overlay="ring">Показать на весь экран</button>
+            <button class="btn btn-primary" type="button" data-open-overlay="print">Показать на весь экран</button>
           </article>
 
           <article class="loader-card" data-variant="docs">
@@ -99,8 +93,8 @@
                     <div class="fc-docs__scan"></div>
                   </div>
                 </div>
-                <p class="fc-loader__title">Готовим документы</p>
-                <p class="fc-loader__status">Собираем договор и приложения…</p>
+                <p class="fc-loader__title">Проверяем документы</p>
+                <p class="fc-loader__status">Сканируем пакет файлов…</p>
               </div>
             </div>
             <h3 class="loader-card-title">Сканер документов</h3>
@@ -112,38 +106,24 @@
             <button class="btn btn-primary" type="button" data-open-overlay="docs">Показать на весь экран</button>
           </article>
 
-          <article class="loader-card" data-variant="steps">
-            <div class="loader-card-badge">03 · Процесс</div>
-            <div class="loader-stage loader-stage--wide" aria-busy="true" aria-live="polite">
-              <div class="fc-loader fc-loader--steps" data-live-steps>
-                <ol class="fc-steps" role="status" aria-label="Этапы обработки">
-                  <li class="fc-steps__item is-done">
-                    <span class="fc-steps__dot"></span>
-                    <span class="fc-steps__label">Отправка</span>
-                  </li>
-                  <li class="fc-steps__item is-active">
-                    <span class="fc-steps__dot"></span>
-                    <span class="fc-steps__label">Проверка</span>
-                  </li>
-                  <li class="fc-steps__item">
-                    <span class="fc-steps__dot"></span>
-                    <span class="fc-steps__label">Ответ</span>
-                  </li>
-                </ol>
-                <div class="fc-progress" aria-hidden="true">
-                  <div class="fc-progress__bar"></div>
+          <article class="loader-card" data-variant="wave">
+            <div class="loader-card-badge">03 · График</div>
+            <div class="loader-stage" aria-busy="true" aria-live="polite">
+              <div class="fc-loader fc-loader--wave">
+                <div class="fc-wave" role="status" aria-label="Подбор графика платежей">
+                  <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
                 </div>
-                <p class="fc-loader__title">Обратная связь с бэкендом</p>
-                <p class="fc-loader__status" data-steps-status>Проверяем комплект документов…</p>
+                <p class="fc-loader__title">Ритм платежей</p>
+                <p class="fc-loader__status">Раскладываем сумму по месяцам…</p>
               </div>
             </div>
-            <h3 class="loader-card-title">Этапы сделки</h3>
-            <p class="loader-card-desc">Для длинных операций: скоринг, подпись, генерация PDF. Пользователь видит, на каком шаге система.</p>
+            <h3 class="loader-card-title">Волна графика</h3>
+            <p class="loader-card-desc">Новый сценарий для подбора срока и ежемесячного платежа: не спиннер, а ритм выплат в цветах логотипа.</p>
             <ul class="loader-card-meta">
-              <li>Индикатор прогресса</li>
-              <li>Смена статусов по шагам</li>
+              <li>Для расчёта графика и срока</li>
+              <li>Градиент отпечатка: синий → лайм</li>
             </ul>
-            <button class="btn btn-primary" type="button" data-open-overlay="steps">Показать на весь экран</button>
+            <button class="btn btn-primary" type="button" data-open-overlay="wave">Показать на весь экран</button>
           </article>
         </div>
       </div>
@@ -229,17 +209,11 @@
     <div class="fc-overlay__panel" data-overlay-panel></div>
   </div>
 
-  <template id="tpl-ring">
-    <div class="fc-loader fc-loader--ring fc-loader--overlay">
-      <div class="fc-ring" role="status" aria-label="Ожидание">
-        <svg class="fc-ring__svg" viewBox="0 0 96 96">
-          <circle class="fc-ring__track" cx="48" cy="48" r="38"></circle>
-          <circle class="fc-ring__arc fc-ring__arc--primary" cx="48" cy="48" r="38"></circle>
-          <circle class="fc-ring__arc fc-ring__arc--secondary" cx="48" cy="48" r="28"></circle>
-        </svg>
-        <div class="fc-ring__core">
-          <img class="fc-ring__print" src="img/fingerprint.svg" alt="" width="26" height="26">
-        </div>
+  <template id="tpl-print">
+    <div class="fc-loader fc-loader--print fc-loader--overlay">
+      <div class="fc-print" role="status" aria-label="Ожидание">
+        <img class="fc-print__mark" src="img/fingerprint.svg" alt="">
+        <span class="fc-print__scan" aria-hidden="true"></span>
       </div>
       <p class="fc-loader__title">Секунда пользы</p>
       <p class="fc-loader__status fc-loader__status--fact" data-ring-status>Лизинг не замораживает всю сумму: покупка уже у вас, деньги остаются в обороте.</p>
@@ -262,33 +236,19 @@
           <div class="fc-docs__scan"></div>
         </div>
       </div>
-      <p class="fc-loader__title">Готовим документы</p>
-      <p class="fc-loader__status">Собираем договор и приложения…</p>
+      <p class="fc-loader__title">Формируем пакет документов</p>
+      <p class="fc-loader__status">Загружаем договор и приложения…</p>
       <button class="btn btn-ghost" type="button" data-close-overlay>Закрыть превью</button>
     </div>
   </template>
 
-  <template id="tpl-steps">
-    <div class="fc-loader fc-loader--steps fc-loader--overlay" data-live-steps>
-      <ol class="fc-steps" role="status" aria-label="Этапы обработки">
-        <li class="fc-steps__item is-done">
-          <span class="fc-steps__dot"></span>
-          <span class="fc-steps__label">Отправка</span>
-        </li>
-        <li class="fc-steps__item is-active">
-          <span class="fc-steps__dot"></span>
-          <span class="fc-steps__label">Проверка</span>
-        </li>
-        <li class="fc-steps__item">
-          <span class="fc-steps__dot"></span>
-          <span class="fc-steps__label">Ответ</span>
-        </li>
-      </ol>
-      <div class="fc-progress" aria-hidden="true">
-        <div class="fc-progress__bar"></div>
+  <template id="tpl-wave">
+    <div class="fc-loader fc-loader--wave fc-loader--overlay">
+      <div class="fc-wave" role="status" aria-label="Подбор графика платежей">
+        <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
       </div>
-      <p class="fc-loader__title">Обратная связь с бэкендом</p>
-      <p class="fc-loader__status" data-steps-status>Проверяем комплект документов…</p>
+      <p class="fc-loader__title">Ритм платежей</p>
+      <p class="fc-loader__status">Раскладываем сумму по месяцам…</p>
       <button class="btn btn-ghost" type="button" data-close-overlay>Закрыть превью</button>
     </div>
   </template>

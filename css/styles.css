@@ -266,6 +266,19 @@ code {
   padding: 20px 12px 8px;
 }
 
+.loader-stage--dark {
+  background: #14171c;
+  border-color: #2a2e33;
+}
+
+.loader-stage--dark .fc-loader__title {
+  color: #fff;
+}
+
+.loader-stage--dark .fc-loader__status {
+  color: #9ca3af;
+}
+
 .loader-card-title {
   font-family: var(--font-display);
   font-size: 1.25rem;
@@ -582,60 +595,31 @@ code {
   opacity: 0;
 }
 
-.fc-ring {
-  width: 96px;
-  height: 96px;
+.fc-print {
   position: relative;
-}
-
-.fc-ring__svg {
-  width: 96px;
-  height: 96px;
-  transform: rotate(-90deg);
-}
-
-.fc-ring__track,
-.fc-ring__arc {
-  fill: none;
-  stroke-width: 6;
-  stroke-linecap: round;
-}
-
-.fc-ring__track {
-  stroke: var(--primary-light);
-}
-
-.fc-ring__arc--primary {
-  stroke: var(--primary);
-  stroke-dasharray: 80 160;
-  animation: ring-spin 1.1s linear infinite;
-  transform-origin: 48px 48px;
-}
-
-.fc-ring__arc--secondary {
-  stroke: var(--secondary);
-  stroke-width: 4;
-  stroke-dasharray: 40 140;
-  animation: ring-spin-rev 1.6s linear infinite;
-  transform-origin: 48px 48px;
-}
-
-.fc-ring__core {
-  position: absolute;
-  inset: 20px;
-  border-radius: 50%;
-  background: linear-gradient(145deg, var(--primary), var(--primary-dark));
-  color: #fff;
+  width: 88px;
+  height: 88px;
   display: grid;
   place-items: center;
-  box-shadow: 0 8px 18px rgba(26, 86, 219, 0.28);
-  animation: core-pulse 1.8s ease-in-out infinite;
 }
 
-.fc-ring__print {
-  width: 26px;
-  height: 26px;
+.fc-print__mark {
+  width: 88px;
+  height: 88px;
   display: block;
+  animation: print-pulse 2.4s ease-in-out infinite;
+  filter: drop-shadow(0 10px 18px rgba(46, 107, 255, 0.28));
+}
+
+.fc-print__scan {
+  position: absolute;
+  left: 14%;
+  right: 14%;
+  height: 16px;
+  border-radius: 99px;
+  background: linear-gradient(180deg, transparent, rgba(200, 255, 61, 0.55), transparent);
+  animation: print-scan 2.2s ease-in-out infinite;
+  pointer-events: none;
 }
 
 .fc-docs__stack {
@@ -705,80 +689,31 @@ code {
   pointer-events: none;
 }
 
-.fc-steps {
-  list-style: none;
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 8px;
-  width: min(100%, 320px);
-  margin: 0;
-  padding: 0;
-  position: relative;
+.fc-wave {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 7px;
+  height: 72px;
+  width: min(100%, 180px);
 }
 
-.fc-steps::before {
-  content: "";
-  position: absolute;
-  left: 16%;
-  right: 16%;
-  top: 11px;
-  height: 2px;
-  background: var(--neutral-200);
-}
-
-.fc-steps__item {
-  display: grid;
-  justify-items: center;
-  gap: 8px;
-  position: relative;
-  color: var(--neutral-500);
-  font-size: 12px;
-  font-weight: 600;
-}
-
-.fc-steps__dot {
-  width: 22px;
-  height: 22px;
-  border-radius: 50%;
-  background: #fff;
-  border: 2px solid var(--neutral-300);
-  z-index: 1;
-}
-
-.fc-steps__item.is-done .fc-steps__dot {
-  background: var(--success);
-  border-color: var(--success);
-  box-shadow: inset 0 0 0 4px #fff;
-}
-
-.fc-steps__item.is-active .fc-steps__dot {
-  border-color: var(--primary);
-  background: var(--primary);
-  animation: core-pulse 1.4s ease-in-out infinite;
-}
-
-.fc-steps__item.is-done,
-.fc-steps__item.is-active {
-  color: var(--neutral-900);
-}
-
-.fc-progress {
-  width: min(100%, 320px);
-  height: 8px;
-  background: var(--neutral-100);
+.fc-wave span {
+  display: block;
+  width: 9px;
   border-radius: 99px;
-  overflow: hidden;
-  margin-top: 4px;
+  background: linear-gradient(180deg, #2e6bff 0%, #22d3ee 48%, #c8ff3d 100%);
+  transform-origin: center bottom;
+  animation: wave 1.05s ease-in-out infinite;
 }
 
-.fc-progress__bar {
-  width: 42%;
-  height: 100%;
-  border-radius: inherit;
-  background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
-  background-size: 200% 100%;
-  animation: progress-slide 1.4s ease-in-out infinite, shimmer 1.8s linear infinite;
-}
+.fc-wave span:nth-child(1) { height: 28%; animation-delay: 0s; }
+.fc-wave span:nth-child(2) { height: 46%; animation-delay: 0.12s; }
+.fc-wave span:nth-child(3) { height: 68%; animation-delay: 0.24s; }
+.fc-wave span:nth-child(4) { height: 92%; animation-delay: 0.08s; }
+.fc-wave span:nth-child(5) { height: 62%; animation-delay: 0.2s; }
+.fc-wave span:nth-child(6) { height: 40%; animation-delay: 0.32s; }
+.fc-wave span:nth-child(7) { height: 24%; animation-delay: 0.16s; }
 
 .fc-overlay {
   position: fixed;
@@ -799,21 +734,8 @@ code {
 }
 
 .fc-loader--overlay .fc-loader__title,
-.fc-loader--overlay .fc-loader__status,
-.fc-loader--overlay .fc-steps__label {
+.fc-loader--overlay .fc-loader__status {
   color: #fff;
-}
-
-.fc-loader--overlay .fc-steps::before {
-  background: rgba(255, 255, 255, 0.2);
-}
-
-.fc-loader--overlay .fc-progress {
-  background: rgba(255, 255, 255, 0.16);
-}
-
-.fc-loader--overlay .fc-ring__track {
-  stroke: rgba(255, 255, 255, 0.18);
 }
 
 .fc-loader--overlay .btn-ghost {
@@ -826,25 +748,37 @@ code {
   }
 }
 
-@keyframes ring-spin {
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@keyframes ring-spin-rev {
-  to {
-    transform: rotate(-360deg);
-  }
-}
-
-@keyframes core-pulse {
+@keyframes print-pulse {
   0%,
   100% {
     transform: scale(1);
   }
   50% {
-    transform: scale(1.06);
+    transform: scale(1.05);
+  }
+}
+
+@keyframes print-scan {
+  0% {
+    top: 8px;
+    opacity: 0.15;
+  }
+  50% {
+    opacity: 0.9;
+  }
+  100% {
+    top: 64px;
+    opacity: 0.15;
+  }
+}
+
+@keyframes wave {
+  0%,
+  100% {
+    transform: scaleY(0.45);
+  }
+  50% {
+    transform: scaleY(1);
   }
 }
 
