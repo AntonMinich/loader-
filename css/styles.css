@@ -598,6 +598,16 @@ code {
   display: block;
   background: none;
   animation: print-pulse 2.4s ease-in-out infinite;
+  -webkit-mask-image: url("../img/fingerprint-mask.svg?v=16");
+  mask-image: url("../img/fingerprint-mask.svg?v=16");
+  -webkit-mask-size: 88px 88px;
+  mask-size: 88px 88px;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  -webkit-mask-source-type: alpha;
+  mask-mode: alpha;
 }
 
 .fc-print__scan {
@@ -614,8 +624,8 @@ code {
   );
   background-size: 100% 220%;
   animation: print-scan 2.2s ease-in-out infinite;
-  -webkit-mask-image: url("../img/fingerprint.svg?v=16");
-  mask-image: url("../img/fingerprint.svg?v=16");
+  -webkit-mask-image: url("../img/fingerprint-mask.svg?v=16");
+  mask-image: url("../img/fingerprint-mask.svg?v=16");
   -webkit-mask-size: 88px 88px;
   mask-size: 88px 88px;
   -webkit-mask-repeat: no-repeat;
