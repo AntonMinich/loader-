@@ -9,6 +9,7 @@ const RING_FACTS = [
 
 const overlay = document.getElementById("overlay");
 const overlayPanel = overlay.querySelector("[data-overlay-panel]");
+const cabinetPortal = document.getElementById("cabinet-portal");
 const loginForm = document.querySelector("[data-login-form]");
 const registerForm = document.querySelector("[data-register-form]");
 const DEMO_WAIT_MS = 3200;
@@ -34,19 +35,38 @@ const liveCleanups = [
 let overlayCleanup = () => {};
 let waitToken = 0;
 
+function finishWaitButtons() {
+  document.querySelectorAll(".btn-submit.is-loading").forEach((button) => {
+    button.classList.remove("is-loading");
+    button.disabled = false;
+  });
+}
+
 function closeOverlay() {
   overlay.hidden = true;
+  overlay.dataset.mode = "preview";
+  document.body.append(overlay);
   overlayCleanup();
   overlayCleanup = () => {};
   overlayPanel.innerHTML = "";
+  finishWaitButtons();
 }
 
-function openOverlay(variant) {
+function openOverlay(variant, { wait = false } = {}) {
   const template = document.getElementById(`tpl-${variant}`);
   if (!template) return;
   overlayCleanup();
   overlayPanel.innerHTML = "";
   overlayPanel.append(template.content.cloneNode(true));
+  overlay.dataset.mode = wait ? "wait" : "preview";
+
+  if (wait) {
+    overlayPanel.querySelector("[data-close-overlay]")?.remove();
+    cabinetPortal?.append(overlay);
+  } else {
+    document.body.append(overlay);
+  }
+
   overlay.hidden = false;
 
   const ringStatus = overlayPanel.querySelector("[data-ring-status]");
@@ -61,6 +81,7 @@ document.querySelectorAll("[data-open-overlay]").forEach((button) => {
 });
 
 overlay.addEventListener("click", (event) => {
+  if (overlay.dataset.mode === "wait") return;
   if (event.target === overlay || event.target.closest("[data-close-overlay]")) {
     closeOverlay();
   }
@@ -92,7 +113,7 @@ function bindWaitForm(form, variant) {
     const token = ++waitToken;
     button.classList.add("is-loading");
     button.disabled = true;
-    openOverlay(variant);
+    openOverlay(variant, { wait: true });
     window.setTimeout(() => {
       button.classList.remove("is-loading");
       button.disabled = false;

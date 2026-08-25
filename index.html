@@ -162,7 +162,7 @@
                 </label>
                 <label>
                   Пароль
-                  <input type="password" name="password" value="••••••••" autocomplete="current-password" required>
+                  <input type="password" name="password" value="password" autocomplete="current-password" required>
                 </label>
                 <button class="btn btn-primary btn-submit" type="submit">
                   <span class="btn-submit__label">Войти</span>
@@ -182,7 +182,7 @@
 
             <form class="portal-body" data-register-form>
               <h3 class="portal-title">Регистрация партнера</h3>
-              <p class="portal-lead">Заполните информацию и приложите обязательные документы</p>
+              <p class="portal-lead">Заполните информацию и приложите обязательные документы.</p>
 
               <section class="portal-block">
                 <h4 class="portal-block__title">1. Скачайте, ознакомьтесь и подпишите документы:</h4>
@@ -204,14 +204,17 @@
                     <input type="text" name="unp" value="12345263" required>
                   </label>
                   <label>
-                    ФИО контактного лица
+                    <span class="portal-label">
+                      ФИО контактного лица
+                      <span class="portal-info" title="Контакт, с которым свяжется менеджер FINCODE">i</span>
+                    </span>
                     <input type="text" name="contact" value="Антон Минич" required>
                   </label>
                   <label>
                     Контактный номер
                     <input type="tel" name="phone" value="+375291112111" required>
                   </label>
-                  <label class="portal-fields__wide">
+                  <label>
                     Email
                     <input type="email" name="email" value="ant.minich@gmail.com" required>
                   </label>
@@ -220,35 +223,47 @@
 
               <section class="portal-block">
                 <h4 class="portal-block__title">3. Загрузите сканы указанных документов:</h4>
-                <p class="portal-hint">Общий размер файлов — не более 10 МБ.</p>
+                <p class="portal-hint">Общий размер файлов – не более 10 МБ.</p>
                 <ul class="portal-files">
                   <li class="portal-file">
                     <div>
                       <strong>Подписанное Соглашение о сотрудничестве</strong>
-                      <span>soglashenie.pdf · 29 КБ</span>
+                      <span>photo_5460629937514551671_y.jpg (29 КБ)</span>
                     </div>
-                    <em>Документ загружен</em>
+                    <span class="portal-file__status">
+                      <svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="9" fill="currentColor"/><path d="M6 10.2 8.6 13 14 7.5" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                      Документ загружен. Нажмите, чтобы заменить файл
+                    </span>
                   </li>
                   <li class="portal-file">
                     <div>
-                      <strong>Устав организации</strong>
-                      <span>ustav.pdf · 29 КБ</span>
+                      <strong>Подписанный Договор купли-продажи</strong>
+                      <span>photo_5460629937514551671_y.jpg (29 КБ)</span>
                     </div>
-                    <em>Документ загружен</em>
+                    <span class="portal-file__status">
+                      <svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="9" fill="currentColor"/><path d="M6 10.2 8.6 13 14 7.5" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                      Документ загружен. Нажмите, чтобы заменить файл
+                    </span>
                   </li>
                   <li class="portal-file">
                     <div>
                       <strong>Свидетельство о государственной регистрации</strong>
-                      <span>svidetelstvo.pdf · 29 КБ</span>
+                      <span>photo_5460629937514551671_y.jpg (29 КБ)</span>
                     </div>
-                    <em>Документ загружен</em>
+                    <span class="portal-file__status">
+                      <svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="9" fill="currentColor"/><path d="M6 10.2 8.6 13 14 7.5" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                      Документ загружен. Нажмите, чтобы заменить файл
+                    </span>
                   </li>
                   <li class="portal-file">
                     <div>
-                      <strong>Приказ о назначении руководителя</strong>
-                      <span>prikaz.pdf · 29 КБ</span>
+                      <strong>Устав организации</strong>
+                      <span>photo_5460629937514551671_y.jpg (29 КБ)</span>
                     </div>
-                    <em>Документ загружен</em>
+                    <span class="portal-file__status">
+                      <svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="9" fill="currentColor"/><path d="M6 10.2 8.6 13 14 7.5" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                      Документ загружен. Нажмите, чтобы заменить файл
+                    </span>
                   </li>
                 </ul>
                 <p class="portal-filesize">Размер файлов: 116 КБ из 10 МБ</p>
@@ -278,7 +293,7 @@
     </div>
   </footer>
 
-  <div class="fc-overlay" id="overlay" hidden>
+  <div class="fc-overlay" id="overlay" data-mode="preview" hidden>
     <div class="fc-overlay__panel" data-overlay-panel></div>
   </div>
 
