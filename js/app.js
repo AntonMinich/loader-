@@ -9,8 +9,9 @@ const RING_FACTS = [
 
 const overlay = document.getElementById("overlay");
 const overlayPanel = overlay.querySelector("[data-overlay-panel]");
-const docsTable = document.querySelector("[data-docs-table]");
-const leadForm = document.querySelector("[data-lead-form]");
+const loginForm = document.querySelector("[data-login-form]");
+const registerForm = document.querySelector("[data-register-form]");
+const DEMO_WAIT_MS = 3200;
 
 function cycleText(node, values, interval) {
   if (!node) return () => {};
@@ -31,6 +32,7 @@ const liveCleanups = [
 ];
 
 let overlayCleanup = () => {};
+let waitToken = 0;
 
 function closeOverlay() {
   overlay.hidden = true;
@@ -68,32 +70,39 @@ document.addEventListener("keydown", (event) => {
   if (event.key === "Escape" && !overlay.hidden) closeOverlay();
 });
 
-document.querySelector("[data-demo='docs-overlay']")?.addEventListener("click", () => {
-  openOverlay("docs");
+function showPortal(name) {
+  document.querySelectorAll("[data-portal]").forEach((screen) => {
+    screen.hidden = screen.dataset.portal !== name;
+  });
+  document.querySelectorAll(".portal-switch__btn").forEach((tab) => {
+    const active = tab.dataset.portalTab === name;
+    tab.classList.toggle("is-active", active);
+    tab.setAttribute("aria-selected", String(active));
+  });
+}
+
+document.querySelectorAll("[data-portal-tab]").forEach((button) => {
+  button.addEventListener("click", () => showPortal(button.dataset.portalTab));
 });
 
-document.querySelector("[data-demo='skeleton']")?.addEventListener("click", (event) => {
-  const button = event.currentTarget;
-  docsTable.classList.add("is-loading");
-  button.disabled = true;
-  window.setTimeout(() => {
-    docsTable.classList.remove("is-loading");
-    button.disabled = false;
-  }, 2200);
-});
+function bindWaitForm(form, variant) {
+  form?.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const button = form.querySelector(".btn-submit");
+    const token = ++waitToken;
+    button.classList.add("is-loading");
+    button.disabled = true;
+    openOverlay(variant);
+    window.setTimeout(() => {
+      button.classList.remove("is-loading");
+      button.disabled = false;
+      if (token === waitToken) closeOverlay();
+    }, DEMO_WAIT_MS);
+  });
+}
 
-leadForm?.addEventListener("submit", (event) => {
-  event.preventDefault();
-  const button = leadForm.querySelector(".btn-submit");
-  button.classList.add("is-loading");
-  button.disabled = true;
-  openOverlay("print");
-  window.setTimeout(() => {
-    button.classList.remove("is-loading");
-    button.disabled = false;
-    closeOverlay();
-  }, 2600);
-});
+bindWaitForm(loginForm, "print");
+bindWaitForm(registerForm, "docs");
 
 window.addEventListener("beforeunload", () => {
   liveCleanups.forEach((stop) => stop());
