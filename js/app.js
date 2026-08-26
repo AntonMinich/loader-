@@ -7,25 +7,75 @@ const RING_FACTS = [
   "Фиксированный платёж проще планировать, чем откладывать нужную покупку.",
 ];
 
+const LAST_FACT_KEY = "fc-b2c-last-fact";
 const overlay = document.getElementById("overlay");
 const overlayPanel = overlay.querySelector("[data-overlay-panel]");
 
-function cycleText(node, values, interval) {
+function shuffle(items) {
+  const bag = [...items];
+  for (let i = bag.length - 1; i > 0; i -= 1) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [bag[i], bag[j]] = [bag[j], bag[i]];
+  }
+  return bag;
+}
+
+function readLastFact() {
+  try {
+    return sessionStorage.getItem(LAST_FACT_KEY);
+  } catch {
+    return null;
+  }
+}
+
+function writeLastFact(fact) {
+  try {
+    sessionStorage.setItem(LAST_FACT_KEY, fact);
+  } catch {
+    /* private mode */
+  }
+}
+
+function createFactBag(values) {
+  let remaining = [];
+  let last = readLastFact();
+
+  function refill() {
+    remaining = shuffle(values);
+    if (last && remaining.length > 1 && remaining[0] === last) {
+      const swap = 1 + Math.floor(Math.random() * (remaining.length - 1));
+      [remaining[0], remaining[swap]] = [remaining[swap], remaining[0]];
+    }
+  }
+
+  function next() {
+    if (!remaining.length) refill();
+    last = remaining.shift();
+    writeLastFact(last);
+    return last;
+  }
+
+  return { next };
+}
+
+function cycleFacts(node, interval) {
   if (!node) return () => {};
-  let index = 0;
+  const bag = createFactBag(RING_FACTS);
+  node.textContent = bag.next();
+
   const timer = window.setInterval(() => {
     node.classList.add("is-swap");
     window.setTimeout(() => {
-      index = (index + 1) % values.length;
-      node.textContent = values[index];
+      node.textContent = bag.next();
       node.classList.remove("is-swap");
     }, 220);
   }, interval);
+
   return () => window.clearInterval(timer);
 }
 
 const liveCleanups = [
-  cycleText(document.querySelector("[data-live-ring] [data-ring-status]"), RING_FACTS, 4500),
+  cycleFacts(document.querySelector("[data-live-ring] [data-ring-status]"), 4500),
 ];
 
 let overlayCleanup = () => {};
@@ -46,7 +96,7 @@ function openOverlay(variant) {
   overlay.hidden = false;
 
   const ringStatus = overlayPanel.querySelector("[data-ring-status]");
-  const stopRing = cycleText(ringStatus, RING_FACTS, 4500);
+  const stopRing = cycleFacts(ringStatus, 4500);
   overlayCleanup = () => {
     stopRing();
   };
