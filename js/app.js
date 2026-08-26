@@ -7,9 +7,11 @@ const RING_FACTS = [
   "Фиксированный платёж проще планировать, чем откладывать нужную покупку.",
 ];
 
-const LAST_FACT_KEY = "fc-b2c-last-fact";
+const FACT_INTERVAL_MS = 3000;
 const overlay = document.getElementById("overlay");
 const overlayPanel = overlay.querySelector("[data-overlay-panel]");
+
+let lastStartedFact = null;
 
 function shuffle(items) {
   const bag = [...items];
@@ -20,29 +22,14 @@ function shuffle(items) {
   return bag;
 }
 
-function readLastFact() {
-  try {
-    return sessionStorage.getItem(LAST_FACT_KEY);
-  } catch {
-    return null;
-  }
-}
-
-function writeLastFact(fact) {
-  try {
-    sessionStorage.setItem(LAST_FACT_KEY, fact);
-  } catch {
-    /* private mode */
-  }
-}
-
-function createFactBag(values) {
+function createFactBag(values, avoidFirst) {
   let remaining = [];
-  let last = readLastFact();
+  let lastEmitted = null;
 
   function refill() {
     remaining = shuffle(values);
-    if (last && remaining.length > 1 && remaining[0] === last) {
+    const avoid = lastEmitted || avoidFirst;
+    if (avoid && remaining.length > 1 && remaining[0] === avoid) {
       const swap = 1 + Math.floor(Math.random() * (remaining.length - 1));
       [remaining[0], remaining[swap]] = [remaining[swap], remaining[0]];
     }
@@ -50,9 +37,8 @@ function createFactBag(values) {
 
   function next() {
     if (!remaining.length) refill();
-    last = remaining.shift();
-    writeLastFact(last);
-    return last;
+    lastEmitted = remaining.shift();
+    return lastEmitted;
   }
 
   return { next };
@@ -60,8 +46,10 @@ function createFactBag(values) {
 
 function cycleFacts(node, interval) {
   if (!node) return () => {};
-  const bag = createFactBag(RING_FACTS);
-  node.textContent = bag.next();
+  const bag = createFactBag(RING_FACTS, lastStartedFact);
+  const first = bag.next();
+  lastStartedFact = first;
+  node.textContent = first;
 
   const timer = window.setInterval(() => {
     node.classList.add("is-swap");
@@ -75,7 +63,7 @@ function cycleFacts(node, interval) {
 }
 
 const liveCleanups = [
-  cycleFacts(document.querySelector("[data-live-ring] [data-ring-status]"), 4500),
+  cycleFacts(document.querySelector("[data-live-ring] [data-ring-status]"), FACT_INTERVAL_MS),
 ];
 
 let overlayCleanup = () => {};
@@ -96,7 +84,7 @@ function openOverlay(variant) {
   overlay.hidden = false;
 
   const ringStatus = overlayPanel.querySelector("[data-ring-status]");
-  const stopRing = cycleFacts(ringStatus, 4500);
+  const stopRing = cycleFacts(ringStatus, FACT_INTERVAL_MS);
   overlayCleanup = () => {
     stopRing();
   };
